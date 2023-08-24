@@ -1,11 +1,28 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { FaGoogle } from "react-icons/fa";
 import { Link } from 'react-router-dom';
 import useTitle from '../../hooks/useTitle';
+import { AuthContext } from '../../providers/AuthProvider';
 
 const Login = () => {
     useTitle('Login');
-    
+    const {login} = useContext(AuthContext);
+    const handleLogin = event =>{
+        event.preventDefault()
+
+        const form = event.target;
+        const email = form.email.value;
+        const password = form.password.value;
+        console.log(email, password);
+
+        login(email, password)
+        .then(result => {
+            console.log(result.user)
+        })
+        .catch(error => {
+            console.log(error);
+        })
+    }
     return (
         <div className="hero min-h-screen bg-base-200">
             <div className="hero-content flex-col">
@@ -13,7 +30,7 @@ const Login = () => {
                 <h1 className="text-5xl font-bold">Please Login!!!</h1>
                 </div>
                 <div className="card flex-shrink-0 w-full max-w-sm shadow-2xl bg-base-100 p-4">
-                    <form>
+                    <form onSubmit={handleLogin}>
                         <div className="card-body">
                             <div className="form-control">
                             <label className="label">

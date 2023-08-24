@@ -1,8 +1,16 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import logo from '../../assets/logo.png';
 import { Link } from 'react-router-dom';
+import { AuthContext } from '../../providers/AuthProvider';
 
 const Navber = () => {
+    const {user, logout} = useContext(AuthContext);
+    const handleLogout = () => {
+        logout()
+        .then(() => {})
+        .catch(error => console.log(error.message))
+
+    }
     const navLink = <>
         <li><Link>Home</Link></li>
         <li><Link>All Toys</Link></li>
@@ -28,7 +36,13 @@ const Navber = () => {
                 </ul>
             </div>
             <div className="navbar-end">
-                <Link to="/login" className="btn">Login</Link>
+                {
+                    user ? <>
+                    <button className='btn' onClick={handleLogout}>Logout</button>         
+                    </> 
+                    :<Link to="/login" className="btn">Login</Link>
+                }
+                
             </div>
         </div>
     );
