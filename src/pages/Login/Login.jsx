@@ -1,8 +1,10 @@
 import React from 'react';
 import { FaGoogle } from "react-icons/fa";
 import { Link } from 'react-router-dom';
+import useTitle from '../../hooks/useTitle';
 
 const Login = () => {
+    useTitle('Login');
     
     return (
         <div className="hero min-h-screen bg-base-200">
@@ -29,7 +31,7 @@ const Login = () => {
                             <button className="btn bg-[#f5b48e] text-dark">Login</button>
                             </div>
                         <label className="label">
-                        <p href="#" className="label-text-alt">New to ToyBox? Please 
+                        <p className="label-text-alt">New to ToyBox? Please 
                         <Link to="/register" className='text-primary link link-hover'> Sign Up</Link></p>
                     </label>
                         </div>
