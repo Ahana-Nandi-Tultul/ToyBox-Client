@@ -32,7 +32,7 @@ const AuthProvider = ({children}) => {
     },[])
 
     const updateUserInfo = (userInfo) => {
-        return updateProfile(auth, userInfo)
+        return updateProfile(auth.currentUser, userInfo)
     }
 
 

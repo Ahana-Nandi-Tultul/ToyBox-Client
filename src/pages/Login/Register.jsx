@@ -58,7 +58,7 @@ const Register = () => {
                 title: 'Error!',
                 text: `${error.message}`,
                 icon: 'error',
-                confirmButtonText: 'Cool'
+                confirmButtonText: 'Close'
               })
         })
     }

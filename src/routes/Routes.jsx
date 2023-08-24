@@ -28,7 +28,8 @@ const router = createBrowserRouter([
             },
             {
                 path: '/addAToy',
-                element: <AddAToy></AddAToy>
+                element: <AddAToy></AddAToy>,
+                loader : () => fetch(`http://localhost:3000/subCategories`)
             }
         ]
     }
