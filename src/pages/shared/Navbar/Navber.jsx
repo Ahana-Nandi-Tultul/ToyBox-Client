@@ -1,7 +1,7 @@
 import React, { useContext } from 'react';
-import logo from '../../assets/logo.png';
+import logo from '../../../assets/logo.png';
 import { Link } from 'react-router-dom';
-import { AuthContext } from '../../providers/AuthProvider';
+import { AuthContext } from '../../../providers/AuthProvider';
 
 const Navber = () => {
     const {user, logout} = useContext(AuthContext);
@@ -12,10 +12,10 @@ const Navber = () => {
 
     }
     const navLink = <>
-        <li><Link>Home</Link></li>
-        <li><Link>All Toys</Link></li>
+        <li><Link to="/">Home</Link></li>
+        <li><Link to="/allToys">All Toys</Link></li>
         <li><Link>My Toys</Link></li>
-        <li><Link>Add A Toy</Link></li>
+        <li><Link to="/addAToy">Add A Toy</Link></li>
     </>
     return (
         <div className="navbar bg-base-100 md:px-10">
