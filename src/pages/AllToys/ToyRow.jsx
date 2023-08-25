@@ -1,7 +1,7 @@
 import React from 'react';
 
-const ToyRow = ({toy}) => {
-    const { sellerName, toyName, toyPrice, quantity, subCategory} = toy
+const ToyRow = ({toy, handleNavigate}) => {
+    const {_id, sellerName, toyName, toyPrice, quantity, subCategory} = toy
 
     return (
         <tr>
@@ -11,7 +11,7 @@ const ToyRow = ({toy}) => {
             <td>${toyPrice}</td>
             <td>{quantity}</td>
             <th>
-            <button className="btn bg-[#f5b48e] text-dark btn-xs">details</button>
+            <button onClick={() => handleNavigate(_id)} className="btn bg-[#f5b48e] text-dark btn-xs">details</button>
             </th>
         </tr>
     );

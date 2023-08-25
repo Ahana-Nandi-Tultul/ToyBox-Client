@@ -1,9 +1,27 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { Rating } from '@smastrom/react-rating'
 import '@smastrom/react-rating/style.css'
+import toast from 'react-hot-toast';
+import { useNavigate } from 'react-router-dom';
+import { AuthContext } from '../../../providers/AuthProvider';
 
 const ToyCard = ({content}) => {
-    const { toyName, toyPrice, ratting, photo} = content
+    const {user, setOpen} = useContext(AuthContext);
+    const {_id, toyName, toyPrice, ratting, photo} = content
+    const notify = () => toast.error('You have to log in first to view details');
+    const navigate = useNavigate();
+
+    const handleNavigate = (_id) => {
+        if(user){
+            setOpen(true)
+            navigate(`/toy/${_id}`)
+        }
+        else{
+            notify()
+            setTimeout(() => navigate(`/login`), 1500);
+        }
+       
+    }
 
     return (
         <div className="card bg-base-100 shadow-xl">
@@ -19,10 +37,11 @@ const ToyCard = ({content}) => {
                     style={{ maxWidth: 100 }} 
                     value={Math.round(ratting)} 
                     readOnly />
-                    <span className='mr-2'>{ratting}</span>
+                    <span className='ml-2'>{ratting}</span>
                     </div>
                 
-                <button className="btn bg-[#f5b48e] text-dark">View Details</button>
+                
+                <button onClick={() => handleNavigate(_id)} className="btn bg-[#f5b48e] text-dark">View Details</button>
                 </div>
             </div>
         </div>

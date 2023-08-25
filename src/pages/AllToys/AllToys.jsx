@@ -1,7 +1,7 @@
-import React, { useEffect, useState } from 'react';
-import { useLoaderData } from 'react-router-dom';
+import React, { useContext, useEffect, useState } from 'react';
+import { useLoaderData, useNavigate } from 'react-router-dom';
 import ToyRow from './ToyRow';
-import { FaSearch } from "react-icons/fa";
+import { AuthContext } from '../../providers/AuthProvider';
 
 const AllToys = () => {
     const allToys = useLoaderData()
@@ -10,6 +10,7 @@ const AllToys = () => {
     const totalPages = Math.ceil(allToys.totalToys / itemsPerPage)
     const pageNumbers = [...Array(totalPages).keys()];
     const [currentPage, setCurrentPage] = useState(0);
+    const {user, setOpen} = useContext(AuthContext);
 
     const options = [5, 10, 15, 20];
     const handleSelectChange = event => {
@@ -39,6 +40,20 @@ const AllToys = () => {
         
     }
 
+    const notify = () => toast.error('You have to log in first to view details');
+    const navigate = useNavigate();
+
+    const handleNavigate = (_id) => {
+        if(user){
+            setOpen(true)
+            navigate(`/toy/${_id}`)
+        }
+        else{
+            notify()
+            setTimeout(() => navigate(`/login`), 1500);
+        }
+       
+    }
     
     return (
         <>
@@ -70,6 +85,7 @@ const AllToys = () => {
                     {
                         toys.map(toy => <ToyRow key={toy._id}
                         toy={toy}
+                        handleNavigate = {handleNavigate}
                         ></ToyRow>)
                     }
                     </tbody>

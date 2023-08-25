@@ -17,7 +17,7 @@ const ShopByCategory = ({categories}) => {
     async function fetchContent() {
       const content = await fetchTabContent(categories[activeTab].name);
       setTabContent(content);
-      console.log(content);
+      // console.log(content);
     }
     fetchContent();
   }, [activeTab, categories]);
@@ -41,8 +41,8 @@ const ShopByCategory = ({categories}) => {
         <hr/>
 
         {
-          categories.map((category, idx) => <>
-          <TabPanel className="px-4">
+          categories.map((category, idx) => <div key={idx}>
+          <TabPanel className="px-4" key={idx}>
             <h2 className='text-2xl font-semibold my-6'>Category: {category.name}</h2>
           <div className='grid grid-cols-1 gap-10 md:grid-cols-3'>
             {
@@ -53,7 +53,7 @@ const ShopByCategory = ({categories}) => {
             }
           </div>
         </TabPanel>
-          </>)
+          </div>)
         }
         
       </Tabs>
