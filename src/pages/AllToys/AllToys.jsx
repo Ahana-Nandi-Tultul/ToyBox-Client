@@ -1,11 +1,32 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useLoaderData } from 'react-router-dom';
 import ToyRow from './ToyRow';
 import { FaSearch } from "react-icons/fa";
 
 const AllToys = () => {
     const allToys = useLoaderData()
-    const [toys, setToys] = useState(allToys)
+    const [toys, setToys] = useState([])
+    const [itemsPerPage, setItemsPerPage] = useState(10);
+    const totalPages = Math.ceil(allToys.totalToys / itemsPerPage)
+    const pageNumbers = [...Array(totalPages).keys()];
+    const [currentPage, setCurrentPage] = useState(0);
+
+    const options = [5, 10, 15, 20];
+    const handleSelectChange = event => {
+        setItemsPerPage(parseInt(event.target.value));
+        setCurrentPage(0)
+    }
+
+    useEffect(() => {
+        const fetchData = async() => {
+            const res = await fetch(`http://localhost:3000/toysPerPage?page=${currentPage}&limit=${itemsPerPage}`)
+            const data = await res.json();
+            setToys(data);
+        }
+        fetchData();
+
+    }, [currentPage, itemsPerPage])
+
 
     const handleSearch = event => {
         event.preventDefault()
@@ -20,6 +41,7 @@ const AllToys = () => {
 
     
     return (
+        <>
         <div className='my-16 md:w-5/6 px-4 mx-auto'>
             <h2 className='text-4xl font-bold text-center mb-6'>All Toys: {toys.length}</h2>
             <div className="form-control mb-6">
@@ -55,6 +77,20 @@ const AllToys = () => {
                 </table>
             </div>
         </div>
+        <div className='text-center'>
+            {
+                pageNumbers.map(number => <button className='btn'
+                    onClick={() => setCurrentPage(number)}
+                    key={number}>{number}</button>)
+            }
+            <select value={itemsPerPage} onChange={handleSelectChange}>
+                {
+                    options.map(op => <option key={op} value={op}>{op}</option>)
+                }
+            </select>
+        </div>
+        </>
+        
     );
 };
 
