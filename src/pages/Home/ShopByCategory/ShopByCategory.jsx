@@ -28,19 +28,23 @@ const ShopByCategory = ({categories}) => {
 
     return (
       <div className='md:w-5/6 mx-auto my-16'>
-        <h2 className='text-4xl font-bold text-center mb-6'>Shop By Category</h2>
+        <h2 className='text-4xl font-bold text-center mb-10'>Shop By Category</h2>
         <Tabs onSelect={handleTabSelect}>
         <TabList className="grid grid-cols-1 md:grid-cols-4 tabs">
           {
             categories.map((category, idx) => <Tab key={category._id} 
              className={`tab text-lg
-               ${idx === activeTab? 'underline underline-offset-8 tab-active' : ''}`}>{category.name}</Tab>)
+               ${idx === activeTab? 'underline underline-offset-8 tab-active no-border' : ''}`}>{category.name}</Tab>)
           }
 
         </TabList>
         <hr/>
-        <TabPanel>
-          <div className='grid grid-cols-1 md:grid-cols-3'>
+
+        {
+          categories.map((category, idx) => <>
+          <TabPanel className="px-4">
+            <h2 className='text-2xl font-semibold my-6'>Category: {category.name}</h2>
+          <div className='grid grid-cols-1 gap-10 md:grid-cols-3'>
             {
               tabContent.map(content => <ToyCard
               key={content._id}
@@ -49,6 +53,9 @@ const ShopByCategory = ({categories}) => {
             }
           </div>
         </TabPanel>
+          </>)
+        }
+        
       </Tabs>
       </div>
     );
