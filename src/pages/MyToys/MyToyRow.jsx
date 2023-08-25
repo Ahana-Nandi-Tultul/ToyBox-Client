@@ -1,8 +1,10 @@
-import React from 'react';
+import React, { useState } from 'react';
 
-const MyToyRow = ({toy, handleDeleteToy}) => {
+
+const MyToyRow = ({toy, handleDeleteToy, handleUpdateModalFetch}) => {
     const {_id, toyName, toyPrice, quantity, subCategory, photo, ratting, description} = toy;
     return (
+        <>
         <tr>
             <th>
                 <button className="btn btn-circle btn-outline" onClick={() => handleDeleteToy(_id)}>
@@ -24,9 +26,11 @@ const MyToyRow = ({toy, handleDeleteToy}) => {
             <td>{ratting}</td>
             <td>{description}</td>
             <th>
-            <button className="btn bg-[#f5b48e] text-dark">Update</button>
+            <button className="btn bg-[#f5b48e] text-dark" onClick={()=>handleUpdateModalFetch(_id)}>Update</button>
             </th>
         </tr>
+        </>
+
     );
 };
 

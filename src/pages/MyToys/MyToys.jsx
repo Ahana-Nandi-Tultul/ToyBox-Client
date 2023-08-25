@@ -2,17 +2,20 @@ import React, { useContext, useEffect, useState } from 'react';
 import { AuthContext } from '../../providers/AuthProvider';
 import MyToyRow from './MyToyRow';
 import Swal from 'sweetalert2';
+import UpdateModal from './UpdateModal';
 
 const MyToys = () => {
     const {user} = useContext(AuthContext);
-    const [toys, setToys] = useState([])
+    const [toys, setToys] = useState([]);
+    const [isOpen, setIsOpen] = useState(false);
+    const [oneToy, setOneToy] = useState({})
     useEffect(() => {
         const url = `http://localhost:3000/myToys?email=${user?.email}`
         fetch(url)
         .then(res => res.json())
         .then(data => setToys(data))
 
-    },[user])
+    },[user, toys])
 
     const handleDeleteToy = id => {
       Swal.fire({
@@ -45,6 +48,54 @@ const MyToys = () => {
       })
     }
 
+    const handleUpdateModalFetch = id => {
+      setIsOpen(!isOpen)
+      const toy = toys.find(toy => toy._id === id)
+      setOneToy(toy)
+
+    }
+
+    const handleUpdateToy = (id, event) => {
+      event.preventDefault();
+      
+      const form = event.target;
+      const toyPrice = form.toyPrice.value;
+      const quantity = form.quantity.value;
+      const description = form.description.value;
+
+      console.log(toyPrice, quantity, description);
+      const updateToy = {toyPrice, quantity, description};
+      fetch(`http://localhost:3000/toys/${id}?email=${user?.email}`, {
+        method: "PATCH",
+        headers: {
+          "content-type" : "application/json"
+        },
+        body: JSON.stringify(updateToy)
+      })
+      .then(res => res.json())
+      .then(data => {
+        if(data.modifiedCount > 0){
+          // console.log(data)
+          Swal.fire({
+            title: 'Success!',
+            text: 'Your Toy-info is updated',
+            icon: 'success',
+            confirmButtonText: 'Cool'
+          })
+          
+          const remaining = toys.filter(toy => toy._id !== id)
+          const updated = toys.find(toy => toy._id === id);
+          updated.toyPrice = toyPrice;
+          updated.quantity = quantity;
+          updateToy.description = description;
+          const newToys = [updated, ...remaining]
+          setToys(newToys)
+          form.reset();
+          setIsOpen(!isOpen);
+        }
+      })
+    }
+
     return (
         <div className='my-16 md:w-5/6 px-4 mx-auto'>
             <h2 className='text-4xl font-bold text-center mb-10'>My Toys: {user?.displayName || 'User'}</h2>
@@ -72,10 +123,17 @@ const MyToys = () => {
                   key={toy._id}
                   toy={toy}
                   handleDeleteToy = {handleDeleteToy}
+                  handleUpdateModalFetch = {handleUpdateModalFetch}
                   ></MyToyRow>)
                 }
               </tbody>
             </table>
+            <UpdateModal 
+            isOpen ={isOpen}
+            setIsOpen = {setIsOpen}
+            oneToy = {oneToy}
+            handleUpdateToy = {handleUpdateToy}
+            ></UpdateModal>
             </div>
         </div>
     );
