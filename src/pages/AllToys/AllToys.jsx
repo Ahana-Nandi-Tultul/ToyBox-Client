@@ -43,7 +43,7 @@ const AllToys = () => {
     return (
         <>
         <div className='my-16 md:w-5/6 px-4 mx-auto'>
-            <h2 className='text-4xl font-bold text-center mb-6'>All Toys: {toys.length}</h2>
+            <h2 className='text-4xl font-bold text-center mb-6'>All Toys</h2>
             <div className="form-control mb-6">
                 <form onSubmit={handleSearch}>
                     <div className="input-group">
@@ -77,13 +77,14 @@ const AllToys = () => {
                 </table>
             </div>
         </div>
-        <div className='text-center'>
+        <div className='text-center mb-16'>
             {
-                pageNumbers.map(number => <button className='btn'
+                pageNumbers.map(number => <button className={`btn 
+                ${currentPage === number ? 'bg-[#f5b48e] text-dark': ''}`}
                     onClick={() => setCurrentPage(number)}
-                    key={number}>{number}</button>)
+                    key={number}>{number + 1}</button>)
             }
-            <select value={itemsPerPage} onChange={handleSelectChange}>
+            <select value={itemsPerPage} onChange={handleSelectChange} className='select select-bordered'>
                 {
                     options.map(op => <option key={op} value={op}>{op}</option>)
                 }
