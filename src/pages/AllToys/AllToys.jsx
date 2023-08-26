@@ -2,6 +2,8 @@ import React, { useContext, useEffect, useState } from 'react';
 import { useLoaderData, useNavigate } from 'react-router-dom';
 import ToyRow from './ToyRow';
 import { AuthContext } from '../../providers/AuthProvider';
+import { toast } from 'react-hot-toast';
+import useTitle from '../../hooks/useTitle';
 
 const AllToys = () => {
     const allToys = useLoaderData()
@@ -11,6 +13,7 @@ const AllToys = () => {
     const pageNumbers = [...Array(totalPages).keys()];
     const [currentPage, setCurrentPage] = useState(0);
     const {user, setOpen} = useContext(AuthContext);
+    useTitle('AllToys')
 
     const options = [5, 10, 15, 20];
     const handleSelectChange = event => {
@@ -50,7 +53,7 @@ const AllToys = () => {
         }
         else{
             notify()
-            setTimeout(() => navigate(`/login`), 1500);
+            setTimeout(() => navigate(`/toy/${_id}`), 1500);
         }
        
     }

@@ -2,6 +2,7 @@ import React, { useContext, useEffect, useState } from 'react';
 import { AuthContext } from '../../../providers/AuthProvider';
 import { useNavigate, useParams } from 'react-router-dom';
 import { Rating } from '@smastrom/react-rating';
+import { FaArrowLeft } from 'react-icons/fa';
 
 const ViewToy = () => {
     const {open, setOpen} = useContext(AuthContext);
@@ -9,18 +10,23 @@ const ViewToy = () => {
     const idObj = useParams();
     const id = idObj.id;
     useEffect(() => {
+        setOpen(true)
         fetch(`http://localhost:3000/toy/${id}`)
         .then(res => res.json())
         .then(data => setToy(data[0]))
     },[])
     const navigate = useNavigate()
+    const handleBack = () => {
+            navigate(-1);
+            setOpen(!open)
+    }
     const handleClose = () => {
-        navigate(-1);
-        setOpen(!open)
+            navigate('/');
+            setOpen(!open)
     }
 
     const {sellerName, sellerEmail, toyName, toyPrice, quantity, subCategory, ratting, photo, description} = toy;
-
+    console.log('ratting', ratting);
     
     return (
         <div className={`fixed inset-0 z-50 ${open ? 'block' : 'hidden'} `}>
@@ -34,18 +40,21 @@ const ViewToy = () => {
                         <p>Seller Name: {sellerName}</p>
                         <p>Seller Email: {sellerEmail}</p>
                         <hr />
-                        <p>Price: {toyPrice}</p>
+                        <p>Price: ${toyPrice}</p>
                         <p>Available Qunatity: {quantity}</p>
                         <p>Sub-Category: {subCategory}</p>
                         <p>Description: {description}</p>
-                        <div className="card-actions md:flex justify-between">
                         <div className='flex items-center '>
-                        <Rating
+                       ` <Rating
                             style={{ maxWidth: 100 }} 
                             value={Math.round(ratting)} 
                             readOnly />
                             <span className='ml-4'>{ratting}</span>
-                            </div>
+                            </div>`
+                        <div className="card-actions md:flex justify-between">
+                        
+                            <button className="btn bg-[#f5b48e] text-dark" onClick={handleBack}>
+                                <FaArrowLeft/> Back </button >
                             <button className="btn btn-primary" onClick={handleClose}> Close </button >
                         </div>
                     </div>

@@ -3,12 +3,14 @@ import { AuthContext } from '../../providers/AuthProvider';
 import MyToyRow from './MyToyRow';
 import Swal from 'sweetalert2';
 import UpdateModal from './UpdateModal';
+import useTitle from '../../hooks/useTitle';
 
 const MyToys = () => {
     const {user} = useContext(AuthContext);
     const [toys, setToys] = useState([]);
     const [isOpen, setIsOpen] = useState(false);
     const [oneToy, setOneToy] = useState({})
+    useTitle('MyToys')
     useEffect(() => {
         const url = `http://localhost:3000/myToys?email=${user?.email}`
         fetch(url)

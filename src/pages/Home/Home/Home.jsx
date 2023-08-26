@@ -3,7 +3,6 @@ import Banner from '../Banner/Banner';
 import useTitle from '../../../hooks/useTitle';
 import ShopByCategory from '../ShopByCategory/ShopByCategory';
 import { useLoaderData } from 'react-router-dom';
-import { Toaster } from 'react-hot-toast';
 
 const Home = () => {
     useTitle('Home')
@@ -15,7 +14,7 @@ const Home = () => {
             <ShopByCategory
             categories = {categories}
             ></ShopByCategory>
-            <Toaster />
+           
             
         </>
     );

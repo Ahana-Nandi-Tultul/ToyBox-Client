@@ -2,7 +2,7 @@ import React, { useContext } from 'react';
 import { Rating } from '@smastrom/react-rating'
 import '@smastrom/react-rating/style.css'
 import toast from 'react-hot-toast';
-import { useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../../providers/AuthProvider';
 
 const ToyCard = ({content}) => {
@@ -10,15 +10,16 @@ const ToyCard = ({content}) => {
     const {_id, toyName, toyPrice, ratting, photo} = content
     const notify = () => toast.error('You have to log in first to view details');
     const navigate = useNavigate();
+    const location = useLocation()
 
     const handleNavigate = (_id) => {
         if(user){
-            setOpen(true)
             navigate(`/toy/${_id}`)
         }
         else{
             notify()
-            setTimeout(() => navigate(`/login`), 1500);
+            console.log(location);
+            setTimeout(() => navigate(`/toy/${_id}`), 1500);
         }
        
     }
