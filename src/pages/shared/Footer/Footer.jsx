@@ -5,7 +5,7 @@ import { FaFacebookF, FaTwitter, FaGooglePlusG, FaFacebookMessenger } from "reac
 
 const Footer = () => {
     return (
-        <div className=' bg-black md:px-20 px-6 text-white py-20'>
+        <div className=' bg-black md:px-20 px-6 text-white py-20' data-aos="slide-up">
             <div className='grid grid-cols-1 md:grid-cols-4'>
                 <div>
                     <img src={logo2} alt="" />

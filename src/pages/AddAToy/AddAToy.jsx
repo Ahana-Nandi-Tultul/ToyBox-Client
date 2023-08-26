@@ -44,7 +44,7 @@ const AddAToy = () => {
             confirmButtonText: 'Yes, add it!'
           }).then((result) => {
             if (result.isConfirmed) {
-            fetch('http://localhost:3000/toys', {
+            fetch('https://toy-master-server.vercel.app/toys', {
                 method: 'POST',
                 headers: {
                     "content-type" : "application/json"
@@ -77,9 +77,9 @@ const AddAToy = () => {
         
     }
     return (
-        <div className='md:w-3/4 mx-auto my-8 border border-slate-800 p-10 rounded-lg'> 
+        <div className='md:w-3/4 mx-auto my-8 border border-slate-800 p-10 rounded-lg' data-aos="fade-right"> 
             <h2 className='text-5xl text-center font-bold'> Add A toy !!!</h2>
-            <form onSubmit={handleAddAToy}>
+            <form onSubmit={handleAddAToy} data-aos="fade-left">
                 <div className='grid md:grid-cols-2 gap-4 my-4' >
                     <div className="form-control">
                         <label className="label">

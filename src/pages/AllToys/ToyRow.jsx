@@ -4,7 +4,7 @@ const ToyRow = ({toy, handleNavigate}) => {
     const {_id, sellerName, toyName, toyPrice, quantity, subCategory} = toy
 
     return (
-        <tr>
+        <tr data-aos="fade-left">
             <td>{sellerName}</td>
             <td>{toyName}</td>
             <td>{subCategory}</td>

@@ -23,7 +23,7 @@ const AllToys = () => {
 
     useEffect(() => {
         const fetchData = async() => {
-            const res = await fetch(`http://localhost:3000/toysPerPage?page=${currentPage}&limit=${itemsPerPage}`)
+            const res = await fetch(`https://toy-master-server.vercel.app/toysPerPage?page=${currentPage}&limit=${itemsPerPage}`)
             const data = await res.json();
             setToys(data);
         }
@@ -37,7 +37,7 @@ const AllToys = () => {
         const form = event.target;
         const search = form.search.value;
 
-            fetch(`http://localhost:3000/toys?search=${search}`)
+            fetch(`https://toy-master-server.vercel.app/toys?search=${search}`)
             .then(res => res.json())
             .then(data => setToys(data))
         
@@ -60,7 +60,7 @@ const AllToys = () => {
     
     return (
         <>
-        <div className='my-16 md:w-5/6 px-4 mx-auto'>
+        <div className='my-16 md:w-5/6 px-4 mx-auto' data-aos="fade-right">
             <h2 className='text-4xl font-bold text-center mb-6'>All Toys</h2>
             <div className="form-control mb-6">
                 <form onSubmit={handleSearch}>

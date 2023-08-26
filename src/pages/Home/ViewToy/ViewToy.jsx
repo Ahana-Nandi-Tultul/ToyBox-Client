@@ -11,7 +11,7 @@ const ViewToy = () => {
     const id = idObj.id;
     useEffect(() => {
         setOpen(true)
-        fetch(`http://localhost:3000/toy/${id}`)
+        fetch(`https://toy-master-server.vercel.app/toy/${id}`)
         .then(res => res.json())
         .then(data => setToy(data[0]))
     },[])
@@ -26,7 +26,7 @@ const ViewToy = () => {
     }
 
     const {sellerName, sellerEmail, toyName, toyPrice, quantity, subCategory, ratting, photo, description} = toy;
-    console.log('ratting', ratting);
+    // console.log('ratting', ratting);
     
     return (
         <div className={`fixed inset-0 z-50 ${open ? 'block' : 'hidden'} `}>
@@ -44,18 +44,19 @@ const ViewToy = () => {
                         <p>Available Qunatity: {quantity}</p>
                         <p>Sub-Category: {subCategory}</p>
                         <p>Description: {description}</p>
+                        <div className="card-actions md:flex justify-between items-center">
                         <div className='flex items-center '>
-                       ` <Rating
+                            <Rating 
                             style={{ maxWidth: 100 }} 
                             value={Math.round(ratting)} 
                             readOnly />
-                            <span className='ml-4'>{ratting}</span>
-                            </div>`
-                        <div className="card-actions md:flex justify-between">
-                        
-                            <button className="btn bg-[#f5b48e] text-dark" onClick={handleBack}>
+                            <span className='ml-2'>{ratting}</span>
+                            </div>
+                            <div>
+                            <button className="btn bg-[#f5b48e] text-dark mr-4" onClick={handleBack}>
                                 <FaArrowLeft/> Back </button >
                             <button className="btn btn-primary" onClick={handleClose}> Close </button >
+                            </div>
                         </div>
                     </div>
                 </div>

@@ -30,7 +30,7 @@ const MyToys = () => {
         confirmButtonText: 'Yes, delete it!'
       }).then((result) => {
         if (result.isConfirmed) {
-          fetch(`http://localhost:3000/toys/${id}?email=${user?.email}`, {
+          fetch(`https://toy-master-server.vercel.app/toys/${id}?email=${user?.email}`, {
             method: "DELETE"
           })
           .then(res => res.json())
@@ -67,7 +67,7 @@ const MyToys = () => {
 
       console.log(toyPrice, quantity, description);
       const updateToy = {toyPrice, quantity, description};
-      fetch(`http://localhost:3000/toys/${id}?email=${user?.email}`, {
+      fetch(`https://toy-master-server.vercel.app/toys/${id}?email=${user?.email}`, {
         method: "PATCH",
         headers: {
           "content-type" : "application/json"
@@ -97,9 +97,9 @@ const MyToys = () => {
         }
       })
     }
-
+    // console.log(toys)
     return (
-        <div className='my-16 md:w-5/6 px-4 mx-auto'>
+        <div className='my-16 md:w-5/6 px-4 mx-auto' data-aos="fade-right">
             <h2 className='text-4xl font-bold text-center mb-10'>My Toys: {user?.displayName || 'User'}</h2>
             <div className="overflow-x-auto">
             <table className="table">

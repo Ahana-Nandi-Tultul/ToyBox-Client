@@ -7,9 +7,9 @@ import Swal from 'sweetalert2';
 
 const Login = () => {
     useTitle('Login');
-    const {login} = useContext(AuthContext);
+    const {login, loginWithGoogle} = useContext(AuthContext);
     const location = useLocation()
-    console.log(location);
+    // console.log(location);
     const from = location?.state?.from?.pathname || '/';
     const navigate = useNavigate();
 
@@ -22,6 +22,22 @@ const Login = () => {
         // console.log(email, password);
 
         login(email, password)
+        .then(result => {
+            // console.log(result.user)
+            navigate(from, {replace: true});
+        })
+        .catch(error => {
+            // console.log(error);
+            Swal.fire({
+                title: 'Error!',
+                text: `${error.message}`,
+                icon: 'error',
+                confirmButtonText: 'Close'
+              })
+        })
+    }
+    const handleGoogleLogin = () => {
+        loginWithGoogle()
         .then(result => {
             // console.log(result.user)
             navigate(from, {replace: true});
@@ -68,7 +84,7 @@ const Login = () => {
                     </form>
                     <div className="divider">OR</div>
                     <div className="flex justify-center">
-                        <button className="btn btn-circle btn-outline">
+                        <button className="btn btn-circle btn-outline" onClick={handleGoogleLogin}>
                             <FaGoogle/>
                         </button>
                     </div>
