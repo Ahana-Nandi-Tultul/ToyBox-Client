@@ -31,7 +31,26 @@ const AuthProvider = ({children}) => {
     useEffect(() => {
         const unsubscribe = onAuthStateChanged(auth, currentUser => {
             setLoading(false);
-            setUser(currentUser)
+            setUser(currentUser);
+            // console.log(currentUser)
+            if(currentUser && currentUser.email){
+                const loggedUser = {
+                    email : currentUser.email
+                }
+                fetch('http://localhost:3000/jwt', {
+                    method: "POST",
+                    headers: {
+                        "content-type" : "application/json"
+                    },
+                    body: JSON.stringify(loggedUser)
+                })
+                .then(res => res.json())
+                .then(data => {
+                    // console.log('toyBox Access Token', data)
+                    localStorage.setItem('toyBox-access-token', data.token)
+
+                })
+            }
         })
 
         return () => unsubscribe()

@@ -44,10 +44,11 @@ const AddAToy = () => {
             confirmButtonText: 'Yes, add it!'
           }).then((result) => {
             if (result.isConfirmed) {
-            fetch('https://toy-master-server.vercel.app/toys', {
+            fetch('http://localhost:3000/toys', {
                 method: 'POST',
                 headers: {
-                    "content-type" : "application/json"
+                    "content-type" : "application/json",
+                    authorization: `Bearer ${localStorage.getItem('toyBox-access-token')}`
                 },
                 body : JSON.stringify(toy)
             })

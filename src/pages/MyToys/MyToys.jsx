@@ -13,7 +13,12 @@ const MyToys = () => {
     useTitle('MyToys')
     useEffect(() => {
         const url = `http://localhost:3000/myToys?email=${user?.email}`
-        fetch(url)
+        fetch(url, {
+          method: "GET",
+          headers: {
+            authorization: `Bearer ${localStorage.getItem('toyBox-access-token')}`
+          }
+        })
         .then(res => res.json())
         .then(data => setToys(data))
 
@@ -30,8 +35,12 @@ const MyToys = () => {
         confirmButtonText: 'Yes, delete it!'
       }).then((result) => {
         if (result.isConfirmed) {
-          fetch(`https://toy-master-server.vercel.app/toys/${id}?email=${user?.email}`, {
-            method: "DELETE"
+          fetch(`http://localhost:3000/toys/${id}?email=${user?.email}`, {
+            method: "DELETE",
+            headers: {
+              authorization: `Bearer ${localStorage.getItem('toyBox-access-token')}`
+            }
+
           })
           .then(res => res.json())
           .then(data => {
@@ -67,10 +76,11 @@ const MyToys = () => {
 
       console.log(toyPrice, quantity, description);
       const updateToy = {toyPrice, quantity, description};
-      fetch(`https://toy-master-server.vercel.app/toys/${id}?email=${user?.email}`, {
+      fetch(`http://localhost:3000/toys/${id}?email=${user?.email}`, {
         method: "PATCH",
         headers: {
-          "content-type" : "application/json"
+          "content-type" : "application/json",
+          authorization: `Bearer ${localStorage.getItem('toyBox-access-token')}`
         },
         body: JSON.stringify(updateToy)
       })

@@ -8,7 +8,7 @@ const ShopByCategory = ({categories}) => {
   const [tabContent, setTabContent] = useState([]);
 
   const fetchTabContent = async(tabName) => {
-    const res = await fetch(`https://toy-master-server.vercel.app/toys/${tabName}`)
+    const res = await fetch(`http://localhost:3000/toys/${tabName}`)
     const data = res.json();
     return data;
   }

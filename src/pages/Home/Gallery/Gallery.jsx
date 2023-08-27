@@ -3,7 +3,7 @@ import React, { useEffect, useState } from 'react';
 const Gallery = () => {
     const [toys, setToys] = useState([]);
     useEffect(() => {
-        fetch(`https://toy-master-server.vercel.app/toys`)
+        fetch(`http://localhost:3000/toys`)
         .then(res => res.json())
         .then(data =>setToys(data))
     },[])

@@ -21,7 +21,7 @@ const router = createBrowserRouter([
             {
                 path: '/',
                 element: <Home></Home>,
-                loader: () => fetch(`https://toy-master-server.vercel.app/subCategories`)
+                loader: () => fetch(`http://localhost:3000/subCategories`)
             },
             {
                 path: '/login',
@@ -34,12 +34,12 @@ const router = createBrowserRouter([
             {
                 path: '/addAToy',
                 element:<PrivateRoutes><AddAToy></AddAToy></PrivateRoutes> ,
-                loader : () => fetch(`https://toy-master-server.vercel.app/subCategories`)
+                loader : () => fetch(`http://localhost:3000/subCategories`)
             },
             {
                 path: '/allToys',
                 element:<AllToys></AllToys>,
-                loader: () => fetch(`https://toy-master-server.vercel.app/totalToys`)
+                loader: () => fetch(`http://localhost:3000/totalToys`)
             },
             {
                 path: '/myToys',

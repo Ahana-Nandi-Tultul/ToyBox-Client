@@ -10,7 +10,9 @@ const Navber = () => {
     // console.log(user);
     const handleLogout = () => {
         logout()
-        .then(() => {})
+        .then(() => {
+            localStorage.removeItem('toyBox-access-token')
+        })
         .catch(error => console.log(error.message))
 
     }

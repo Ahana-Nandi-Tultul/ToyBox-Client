@@ -11,7 +11,7 @@ const ViewToy = () => {
     const id = idObj.id;
     useEffect(() => {
         setOpen(true)
-        fetch(`https://toy-master-server.vercel.app/toy/${id}`)
+        fetch(`http://localhost:3000/toy/${id}`)
         .then(res => res.json())
         .then(data => setToy(data[0]))
     },[])
