@@ -12,7 +12,7 @@ const MyToys = () => {
     const [oneToy, setOneToy] = useState({})
     useTitle('MyToys')
     useEffect(() => {
-        const url = `http://localhost:3000/myToys?email=${user?.email}&sort=`
+        const url = `https://toy-master-server.vercel.app/myToys?email=${user?.email}&sort=`
         fetch(url, {
           method: "GET",
           headers: {
@@ -108,7 +108,7 @@ const MyToys = () => {
       })
     }
     const handleSort = (sort) => {
-      fetch(`http://localhost:3000/myToys?email=${user?.email}&sort=${sort}`,{
+      fetch(`https://toy-master-server.vercel.app/myToys?email=${user?.email}&sort=${sort}`,{
         method: "GET",
         headers: {
           authorization: `Bearer ${localStorage.getItem('toyBox-access-token')}`

@@ -3,7 +3,7 @@ import { FaCloudDownloadAlt, FaPhoneAlt, FaTruck } from "react-icons/fa";
 
 const Services = () => {
     return (
-        <div  className='container px-4 mx-auto py-10 bg-[#da895a] text-white rounded-lg my-20' data-aos="slide-up">
+        <div  className='container px-4 mx-auto py-10 bg-[#da895a] text-white rounded-lg mb-32' data-aos="slide-up">
             <h2 className='text-center text-5xl font-bold mb-16'>Our Services</h2>
             <div className='grid grid-cols-1 md:grid-cols-4 gap-4'>
                 <div className='flex md:justify-center items-center gap-2 border-r-2'>

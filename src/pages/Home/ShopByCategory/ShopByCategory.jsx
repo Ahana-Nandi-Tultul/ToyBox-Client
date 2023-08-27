@@ -37,7 +37,7 @@ const ShopByCategory = () => {
   };
 
     return (
-      <div className='md:w-5/6 mx-auto my-20' data-aos="slide-up">
+      <div className='md:w-5/6 mx-auto mb-32' data-aos="slide-up">
         <h2 className='text-5xl font-bold text-center mb-10'>Shop By Category</h2>
         {
 

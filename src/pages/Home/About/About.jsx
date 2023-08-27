@@ -5,7 +5,7 @@ import about3 from '../../../assets/about3.jpg'
 
 const About = () => {
     return (
-        <div className='md:w-5/6 mx-auto my-20' data-aos="slide-up">
+        <div className='md:w-5/6 mx-auto my-32' data-aos="slide-up">
             <h2 className='text-center text-5xl font-bold mb-10'>About Us</h2>
             <div className='grid grid-cols-1 md:grid-cols-2 gap-8'>
                 <div className='md:flex justify-end items-center relative'>
