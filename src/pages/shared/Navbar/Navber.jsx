@@ -28,7 +28,7 @@ const Navber = () => {
         <li><Link to="/blog">Blog</Link></li>
     </>
     return (
-        <div className="navbar bg-base-100 md:px-10" data-aos="fade-up">
+        <div className="navbar bg-base-100 md:px-10">
             <div className="navbar-start">
                 <div className="dropdown">
                 <label tabIndex={0} className="btn btn-ghost lg:hidden">

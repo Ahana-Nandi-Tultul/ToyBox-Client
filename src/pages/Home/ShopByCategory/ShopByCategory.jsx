@@ -27,7 +27,7 @@ const ShopByCategory = ({categories}) => {
   };
 
     return (
-      <div className='md:w-5/6 mx-auto my-16' data-aos="fade-left">
+      <div className='md:w-5/6 mx-auto my-16' data-aos="slide-up">
         <h2 className='text-4xl font-bold text-center mb-10'>Shop By Category</h2>
         <Tabs onSelect={handleTabSelect}>
         <TabList className="grid grid-cols-1 md:grid-cols-4 tabs">

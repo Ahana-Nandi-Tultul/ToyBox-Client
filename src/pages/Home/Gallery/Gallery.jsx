@@ -8,17 +8,17 @@ const Gallery = () => {
         .then(data =>setToys(data))
     },[])
     return (
-        <div className='md:w-5/6 mx-auto my-16' data-aos="fade-right">
-            <h2 className='text-4xl font-bold text-center mb-10'>Shop By Category</h2>
+        <div className='md:w-5/6 mx-auto my-16' data-aos="slide-up">
+            <h2 className='text-4xl font-bold text-center mb-10'>Gallery</h2>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
                 {
-                    toys.map(toy => <>
-                    <div className="avatar border border-1 rounded" data-aos="flip-right">
+                    toys.map(toy => <div key={toy._id}>
+                    <div className="avatar border border-1 rounded p-4" data-aos="flip-right">
                         <div className="rounded">
-                            <img src={toy.photo} className='w-full h-full' />
+                            <img src={toy.photo} className='w-full h-full border border-1 rounded' />
                         </div>
                     </div>
-                    </>)
+                    </div>)
                 }
             </div>
         </div>
