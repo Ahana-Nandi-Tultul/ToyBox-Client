@@ -8,7 +8,7 @@ const ShopByCategory = ({categories}) => {
   const [tabContent, setTabContent] = useState([]);
 
   const fetchTabContent = async(tabName) => {
-    const res = await fetch(`http://localhost:3000/toys/${tabName}`)
+    const res = await fetch(`https://toy-master-server.vercel.app/toys/${tabName}`)
     const data = res.json();
     return data;
   }
@@ -27,8 +27,8 @@ const ShopByCategory = ({categories}) => {
   };
 
     return (
-      <div className='md:w-5/6 mx-auto my-16' data-aos="slide-up">
-        <h2 className='text-4xl font-bold text-center mb-10'>Shop By Category</h2>
+      <div className='md:w-5/6 mx-auto my-20' data-aos="slide-up">
+        <h2 className='text-5xl font-bold text-center mb-10'>Shop By Category</h2>
         <Tabs onSelect={handleTabSelect}>
         <TabList className="grid grid-cols-1 md:grid-cols-4 tabs">
           {

@@ -12,7 +12,7 @@ const Banner = () => {
                     <div className='absolute bg-black-rgba w-full h-full text-white 
                     flex justify-center items-center p-4'>
                         <div className='md:w-1/2'>
-                            <h2 className='md:text-6xl text-4xl font-extrabold mb-2'>Welcom to ToyBox Delights</h2>
+                            <h2 className='md:text-6xl text-4xl font-extrabold mb-2'>Welcome to ToyBox Delights</h2>
                             <p>Get your favourite miniature musical instrument in ToyBox.
                                 There you will find out Lorem ipsum dolor sit amet consectetur.
                                 Your most of the avourite musical instruments you will find here in the miniature form.

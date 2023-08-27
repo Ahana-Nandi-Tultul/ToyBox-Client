@@ -12,7 +12,7 @@ const MyToys = () => {
     const [oneToy, setOneToy] = useState({})
     useTitle('MyToys')
     useEffect(() => {
-        const url = `http://localhost:3000/myToys?email=${user?.email}`
+        const url = `https://toy-master-server.vercel.app/myToys?email=${user?.email}`
         fetch(url, {
           method: "GET",
           headers: {
@@ -35,7 +35,7 @@ const MyToys = () => {
         confirmButtonText: 'Yes, delete it!'
       }).then((result) => {
         if (result.isConfirmed) {
-          fetch(`http://localhost:3000/toys/${id}?email=${user?.email}`, {
+          fetch(`https://toy-master-server.vercel.app/toys/${id}?email=${user?.email}`, {
             method: "DELETE",
             headers: {
               authorization: `Bearer ${localStorage.getItem('toyBox-access-token')}`
@@ -76,7 +76,7 @@ const MyToys = () => {
 
       console.log(toyPrice, quantity, description);
       const updateToy = {toyPrice, quantity, description};
-      fetch(`http://localhost:3000/toys/${id}?email=${user?.email}`, {
+      fetch(`https://toy-master-server.vercel.app/toys/${id}?email=${user?.email}`, {
         method: "PATCH",
         headers: {
           "content-type" : "application/json",

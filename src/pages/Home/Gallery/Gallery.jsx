@@ -3,13 +3,13 @@ import React, { useEffect, useState } from 'react';
 const Gallery = () => {
     const [toys, setToys] = useState([]);
     useEffect(() => {
-        fetch(`http://localhost:3000/toys`)
+        fetch(`https://toy-master-server.vercel.app/toys`)
         .then(res => res.json())
         .then(data =>setToys(data))
     },[])
     return (
-        <div className='md:w-5/6 mx-auto my-16' data-aos="slide-up">
-            <h2 className='text-4xl font-bold text-center mb-10'>Gallery</h2>
+        <div className='md:w-5/6 mx-auto my-20' data-aos="slide-up">
+            <h2 className='text-5xl font-bold text-center mb-10'>Gallery</h2>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
                 {
                     toys.map(toy => <div key={toy._id}>

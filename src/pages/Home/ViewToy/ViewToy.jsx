@@ -11,7 +11,7 @@ const ViewToy = () => {
     const id = idObj.id;
     useEffect(() => {
         setOpen(true)
-        fetch(`http://localhost:3000/toy/${id}`)
+        fetch(`https://toy-master-server.vercel.app/toy/${id}`)
         .then(res => res.json())
         .then(data => setToy(data[0]))
     },[])
@@ -29,12 +29,12 @@ const ViewToy = () => {
     // console.log('ratting', ratting);
     
     return (
-        <div className={`fixed inset-0 z-50 ${open ? 'block' : 'hidden'} `}>
+        <div className={`fixed inset-0 z-50 overflow-y-scroll ${open ? 'block' : 'hidden'} `}>
         <div className="fixed inset-0 bg-black opacity-50"></div>
         <div className="fixed inset-0 flex justify-center items-center">
             <div className="bg-white p-6 rounded shadow-lg w-5/6">
                 <div className="card card-side flex flex-col md:flex-row bg-base-100 shadow-xl">
-                    <figure><img src={photo} alt="Movie"/></figure>
+                    <figure><img src={photo} alt="Movie" className='h-full w-full'/></figure>
                     <div className="card-body">
                         <h2 className="card-title">{toyName}</h2>
                         <p>Seller Name: {sellerName}</p>

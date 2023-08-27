@@ -44,7 +44,7 @@ const AddAToy = () => {
             confirmButtonText: 'Yes, add it!'
           }).then((result) => {
             if (result.isConfirmed) {
-            fetch('http://localhost:3000/toys', {
+            fetch('https://toy-master-server.vercel.app/toys', {
                 method: 'POST',
                 headers: {
                     "content-type" : "application/json",
