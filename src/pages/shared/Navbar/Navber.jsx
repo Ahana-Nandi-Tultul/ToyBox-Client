@@ -47,7 +47,7 @@ const Navber = () => {
                                 <img src={user?.photoURL} 
                                 className='me-2 bg-dark text-white' 
                                 data-tooltip-id="my-tooltip" data-tooltip-content={user?.displayName}/>
-                                :<FaUserCircle data-tooltip-content={user?.displayName}/>
+                                :<FaUserCircle data-tooltip-content={user?.displayName} className='h-full'/>
                             }
                             <Tooltip id="my-tooltip" className='bg-black text-white z-20' />
 

@@ -2,7 +2,17 @@ import React, { useEffect, useState } from 'react';
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
 import ToyCard from '../ToyCard/ToyCard';
 
-const ShopByCategory = ({categories}) => {
+const ShopByCategory = () => {
+  const [categories, setCategories] = useState([]);
+  const [loadCat, setLoadCat] = useState(true);
+  useEffect(() => {
+     fetch(`https://toy-master-server.vercel.app/subCategories`)
+     .then(res => res.json())
+     .then(data => {
+      setLoadCat(false)
+      setCategories(data)
+    })
+  }, [])
   // console.log(categories)
   const [activeTab, setActiveTab] = useState(0);
   const [tabContent, setTabContent] = useState([]);
@@ -29,12 +39,15 @@ const ShopByCategory = ({categories}) => {
     return (
       <div className='md:w-5/6 mx-auto my-20' data-aos="slide-up">
         <h2 className='text-5xl font-bold text-center mb-10'>Shop By Category</h2>
+        {
+
+          loadCat ? <progress className="progress w-56"></progress> :
         <Tabs onSelect={handleTabSelect}>
         <TabList className="grid grid-cols-1 md:grid-cols-4 tabs">
           {
             categories.map((category, idx) => <Tab key={category._id} 
-             className={`tab text-lg
-               ${idx === activeTab? 'underline underline-offset-8 tab-active no-border' : ''}`}>{category.name}</Tab>)
+            className={`tab text-lg
+              ${idx === activeTab? 'underline underline-offset-8 tab-active no-border' : ''}`}>{category.name}</Tab>)
           }
 
         </TabList>
@@ -54,8 +67,10 @@ const ShopByCategory = ({categories}) => {
         </TabPanel>
           </div>)
         }
-        
-      </Tabs>
+
+        </Tabs>
+        }
+       
       </div>
     );
 };

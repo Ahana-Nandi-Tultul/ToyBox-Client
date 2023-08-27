@@ -12,7 +12,7 @@ const MyToys = () => {
     const [oneToy, setOneToy] = useState({})
     useTitle('MyToys')
     useEffect(() => {
-        const url = `https://toy-master-server.vercel.app/myToys?email=${user?.email}`
+        const url = `http://localhost:3000/myToys?email=${user?.email}&sort=`
         fetch(url, {
           method: "GET",
           headers: {
@@ -22,7 +22,7 @@ const MyToys = () => {
         .then(res => res.json())
         .then(data => setToys(data))
 
-    },[user, toys])
+    },[])
 
     const handleDeleteToy = id => {
       Swal.fire({
@@ -70,7 +70,7 @@ const MyToys = () => {
       event.preventDefault();
       
       const form = event.target;
-      const toyPrice = form.toyPrice.value;
+      const toyPrice =parseFloat(form.toyPrice.value);
       const quantity = form.quantity.value;
       const description = form.description.value;
 
@@ -107,10 +107,27 @@ const MyToys = () => {
         }
       })
     }
+    const handleSort = (sort) => {
+      fetch(`http://localhost:3000/myToys?email=${user?.email}&sort=${sort}`,{
+        method: "GET",
+        headers: {
+          authorization: `Bearer ${localStorage.getItem('toyBox-access-token')}`
+        }
+      })
+      .then(res => res.json())
+      .then(data => setToys(data))
+    }
     // console.log(toys)
     return (
         <div className='my-16 md:w-5/6 px-4 mx-auto' data-aos="fade-right">
             <h2 className='text-4xl font-bold text-center mb-10'>My Toys: {user?.displayName || 'User'}</h2>
+              <details className="dropdown mb-8">
+              <summary className="m-1 btn">Sort By Price</summary>
+              <ul className="p-2 shadow menu dropdown-content z-[1] bg-base-100 rounded-box w-52">
+                <li><button onClick={() => handleSort('true')}>Ascending Order</button></li>
+                <li><button onClick={() => handleSort('false')}>Descending Order</button></li>
+              </ul>
+            </details>
             <div className="overflow-x-auto">
             <table className="table">
               {/* head */}

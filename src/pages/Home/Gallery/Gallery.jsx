@@ -14,7 +14,7 @@ const Gallery = () => {
                 {
                     toys.map(toy => <div key={toy._id}>
                     <div className="avatar border border-1 rounded p-4" data-aos="flip-right">
-                        <div className="rounded">
+                        <div className="rounded h-72" >
                             <img src={toy.photo} className='w-full h-full border border-1 rounded' />
                         </div>
                     </div>

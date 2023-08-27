@@ -22,7 +22,7 @@ const Blog = () => {
                     </p>
                 </div>
                 <div className='mt-6'>
-                    <h2 className='text-2xl'>Q1. Compare SQL and NoSQL databases?</h2>
+                    <h2 className='text-2xl'>Q2. Compare SQL and NoSQL databases?</h2>
                     <p><strong>Ans:</strong> Comparison between SQL and NoSQL database is given below </p>
                     <div className="overflow-x-auto">
                         <table className="table">
