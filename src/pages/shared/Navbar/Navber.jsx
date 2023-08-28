@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import logo from '../../../assets/logo.png';
 import { Link } from 'react-router-dom';
 import { AuthContext } from '../../../providers/AuthProvider';
@@ -7,6 +7,7 @@ import { Tooltip } from 'react-tooltip'
 
 const Navber = () => {
     const {user, logout} = useContext(AuthContext);
+    const [openNav, isOpenNav] = useState(false)
     // console.log(user);
     const handleLogout = () => {
         logout()
@@ -29,13 +30,13 @@ const Navber = () => {
     </>
     return (
         <div className="navbar bg-base-100 md:px-10">
-            <div className="navbar-start">
+            <div className="navbar-start flex">
                 <div className="dropdown">
-                <label tabIndex={0} className="btn btn-ghost lg:hidden">
+                <label tabIndex={0} className="btn btn-ghost lg:hidden" onClick={() => isOpenNav(!openNav)} >
                     <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h8m-8 6h16" /></svg>
                 </label>
-                <ul tabIndex={0} className="menu menu-sm dropdown-content mt-3 z-[1] p-2 
-                shadow bg-base-100 rounded-box w-52 flex lg:hidden">
+                <ul tabIndex={0} className={`menu menu-sm dropdown-content mt-3 z-[1] p-2 
+                shadow bg-base-100 rounded-box w-52 flex lg:hidden ${openNav ? 'block' : 'hidden'}`}>
                     {navLink}
                     <div className="navbar-end menu menu-sm">
                     {
