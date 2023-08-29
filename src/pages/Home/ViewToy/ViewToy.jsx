@@ -29,11 +29,11 @@ const ViewToy = () => {
     // console.log('ratting', ratting);
     
     return (
-        <div className={`fixed inset-0 z-50 overflow-y-scroll ${open ? 'block' : 'hidden'} `}>
+        <div className={`fixed inset-0 z-50  ${open ? 'block' : 'hidden'} `}>
         <div className="fixed inset-0 bg-black opacity-50"></div>
         <div className="fixed inset-0 flex justify-center items-center">
-            <div className="bg-white p-6 rounded shadow-lg w-5/6">
-                <div className="card card-side flex flex-col md:flex-row bg-base-100 shadow-xl">
+            <div className="bg-white p-6 rounded shadow-lg w-5/6 ">
+                <div className="card card-side flex flex-col md:flex-row bg-base-100 shadow-xl overflow-y-scroll">
                     <figure><img src={photo} alt="Movie" className='h-full w-full'/></figure>
                     <div className="card-body">
                         <h2 className="card-title">{toyName}</h2>

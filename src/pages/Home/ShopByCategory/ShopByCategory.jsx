@@ -25,7 +25,8 @@ const ShopByCategory = () => {
 
   useEffect(() => {
     async function fetchContent() {
-      const content = await fetchTabContent(categories[activeTab].name);
+      // console.log(categories[activeTab]?.name)
+      const content = await fetchTabContent(categories[activeTab]?.name);
       setTabContent(content);
       // console.log(content);
     }

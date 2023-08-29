@@ -45,7 +45,7 @@ const MyToys = () => {
           .then(res => res.json())
           .then(data => {
             if(data.deletedCount > 0){
-              console.log(data)
+              // console.log(data)
               Swal.fire(
                 'Deleted!',
                 'Your file has been deleted.',
@@ -74,7 +74,7 @@ const MyToys = () => {
       const quantity = form.quantity.value;
       const description = form.description.value;
 
-      console.log(toyPrice, quantity, description);
+      // console.log(toyPrice, quantity, description);
       const updateToy = {toyPrice, quantity, description};
       fetch(`https://toy-master-server.vercel.app/toys/${id}?email=${user?.email}`, {
         method: "PATCH",
@@ -124,8 +124,8 @@ const MyToys = () => {
               <details className="dropdown mb-8">
               <summary className="m-1 btn">Sort By Price</summary>
               <ul className="p-2 shadow menu dropdown-content z-[1] bg-base-100 rounded-box w-52">
-                <li><button onClick={() => handleSort('true')}>Ascending Order</button></li>
-                <li><button onClick={() => handleSort('false')}>Descending Order</button></li>
+                <li><button onClick={() => handleSort('true')}>Low To High</button></li>
+                <li><button onClick={() => handleSort('false')}>High To Low</button></li>
               </ul>
             </details>
             <div className="overflow-x-auto">
