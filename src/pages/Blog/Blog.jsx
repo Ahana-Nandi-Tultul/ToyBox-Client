@@ -1,7 +1,9 @@
 import React from 'react';
 import './Blog.css';
+import useTitle from '../../hooks/useTitle';
 
 const Blog = () => {
+    useTitle('Blog')
     return (
         <div data-aos="flip-left" className='md:w-5/6 mx-auto my-20'>
             <h2 className='text-center text-5xl mb-10'>Answer of Questions</h2>
